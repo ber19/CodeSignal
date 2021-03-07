@@ -1,33 +1,27 @@
 def isCryptSolution(crypt, solution):
     diccSol = dict(solution)
-
-    num1 = ''
-    num2 = ''
+    sum1 = ''
+    sum2 = ''
     resp = ''
-    cont = 0
-    for word in crypt:
-        for letter in word:
-            if cont == 0:
-                num1 += diccSol.get(letter)
-            elif cont == 1:
-                num2 += diccSol.get(letter)
+
+    for i in range(len(crypt)):
+        for letter in crypt[i]:
+            if i == 0:
+                sum1 += diccSol.get(letter)
+            elif i == 1:
+                sum2 += diccSol.get(letter)
             else:
                 resp += diccSol.get(letter)
-        cont += 1
-    if int(num1) + int(num2) != int(resp):
-        print('Mal')
+    
+    if int(sum1) + int(sum2) != int(resp):
         return False
-    elif len(num1)>1 and num1[0]=='0':
-        print('Mal')
+    elif len(sum1)>1 and sum1[0]=='0':
         return False
-    elif len(num2)>1 and num2[0]=='0':
-        print('Mal')
+    elif len(sum2)>1 and sum2[0]=='0':
         return False
     elif len(resp)>1 and resp[0]=='0':
-        print('Mal')
         return False
     else:
-        print('Bien')
         return True
 
 # isCryptSolution( ["SEND", "MORE", "MONEY"], [['O', '0'],

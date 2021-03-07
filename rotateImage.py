@@ -1,6 +1,8 @@
 def rotateImage(a):
-    res = list(zip(*a))
-    res = [ list(tup[::-1]) for tup in res ] 
+    res1 = zip(*a)
+    res = []
+    for i in res1:
+        res.append(i[::-1])
     return res
     
 

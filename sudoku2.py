@@ -9,42 +9,32 @@ def sudoku2(grid):
                 if row[i] not in diccR:
                     diccR[row[i]] = 1
                 else:
-                    diccR[row[i]] += 1
-            if diccR[row[i]] > 1:
-                return False
+                    return False 
+
     # Inspeccion de columnas
-    grid_columns = list(zip(*grid))
-    for column in grid_columns:
+    inCols = zip(*grid)
+    for col in inCols:
         diccC = {}
-        for i in range(len(column)):
-            if column[i] == '.':
+        for j in range(len(col)):
+            if col[j] == '.':
                 continue
             else:
-                if column[i] not in diccC:
-                    diccC[column[i]] = 1
+                if col[j] not in diccC:
+                    diccC[col[j]] = 1
                 else:
-                    diccC[column[i]] += 1
-                if diccC[column[i]] > 1:
                     return False
-    # Inspeccion de subgrid (3x3)
-    for i in range(0,9,3):
-        tmpR = 0
-        for j in range(0,3):
-            subGrid = []
+
+    # Inspeccion de subgrids (3x3)
+    for l in range(0, len(grid), 3):
+        for i in range(0, len(grid), 3):
+            subgrid = {}
             for k in range(3):
-                subGrid += grid[k+i][tmpR:tmpR+3:]
-            tmpR += 3
-            diccG = {}
-            for l in range(0, len(subGrid), 1):
-                if subGrid[l] == '.':
-                    continue
-                else:
-                    if subGrid[l] not in diccG:
-                        diccG[subGrid[l]] = 1
-                    else:
-                        diccG[subGrid[l]] += 1
-                    if diccG[subGrid[l]] > 1:
-                        return False
+                for j in range(l, l+3, 1):
+                    if grid[i+k][j] != '.':
+                        if grid[i+k][j] not in subgrid:
+                            subgrid[grid[i+k][j]] = 1
+                        else:
+                            return False
     return True
 
 
